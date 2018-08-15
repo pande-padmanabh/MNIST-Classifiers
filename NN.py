@@ -1,3 +1,8 @@
+'''
+Simple neural network model with one hidden layer for the classification of MNIST data.
+This model has the flexibilify of dropout, regularization, and learning rate decay.
+'''
+
 import warnings
 warnings.filterwarnings("ignore", message="numpy.dtype size changed")
 warnings.filterwarnings("ignore", message="numpy.ufunc size changed")
@@ -95,12 +100,12 @@ def createModel(train_dataset, train_labels, valid_dataset, valid_labels, test_d
 		regularizer = tf.nn.l2_loss(weights_hidden) + tf.nn.l2_loss(weights_output)
 		loss = tf.reduce_mean(loss + beta * regularizer)
 		
-		# Define weight decay
+		# Define learning rate decay
 		global_step = tf.Variable(0)
 		dynamic_learning_rate = tf.train.exponential_decay(learning_rate, global_step, decay_steps, decay_rate)
 
 		# Define optimizer
-		#optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss)
+		# optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss) 
 		optimizer = tf.train.GradientDescentOptimizer(dynamic_learning_rate).minimize(loss, global_step=global_step)
 		
 		# Define predictions
