@@ -1,3 +1,10 @@
+'''
+The file partitions dataset for training, validation and testing for classification.
+This looks into MNIST dataset (large and small) kept separately in two different folders,
+and creates a pickle file of the given partition size which can be used for 
+either of the classification models in this repository
+'''
+
 import warnings
 warnings.filterwarnings("ignore", message="numpy.dtype size changed")
 warnings.filterwarnings("ignore", message="numpy.ufunc size changed")
